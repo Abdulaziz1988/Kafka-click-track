@@ -1,0 +1,14 @@
+{
+  "name": "nodejs-kafka-website",
+  "version": "1.0.0",
+  "description": "A Node.js project with a simple website that pushes user click events to a Kafka broker for analysis.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "kafka-node": "^5.0.0",
+    "kafkajs": "^2.2.4"
+  }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mouse Click Coordinates</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <h1>Mouse Click Coordinates</h1>
+    <canvas id="coordinatesChart" width="400" height="400"></canvas>
+    <script>
+        async function fetchCoordinates() {
+            const response = await fetch('/api/coordinates');
+            const coordinates = await response.json();
+            return coordinates;
+        }
+
+        async function plotCoordinates() {
+            const coordinates = await fetchCoordinates();
+            const ctx = document.getElementById('coordinatesChart').getContext('2d');
+            const data = {
+                datasets: [{
+                    label: 'Mouse Click Coordinates',
+                    data: coordinates.map(coord => ({ x: coord.x, y: coord.y })),
+                    backgroundColor: 'rgba(255, 0, 0, 1)',
+                    pointRadius: 5
+                }]
+            };
+            const config = {
+                type: 'scatter',
+                data: data,
+                options: {
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom'
+                        },
+                        y: {
+                            type: 'linear'
+                        }
+                    }
+                }
+            };
+            new Chart(ctx, config);
+        }
+
+        plotCoordinates();
+    </script>
+</body>
+
+</html>

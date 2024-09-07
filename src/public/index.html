@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simple Website</title>
+</head>
+
+<body>
+    <h1>Click Me!</h1>
+    <p>Clicking on the button will trigger an event.</p>
+    <button id="clickButton">Click</button>
+    <script>
+        // Send a request to the server when the user clicks on the website
+        document.addEventListener('click', function (event) {
+            const coordinates = {
+                x: event.clientX,
+                y: event.clientY
+            };
+
+            fetch('/event', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ event: 'click', coordinates: coordinates })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Event sent successfully');
+                    } else {
+                        console.error('Failed to send event');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+
+</html>
