@@ -37,6 +37,9 @@
     ```sh
     docker-compose up -d
     ```
+    ```sh
+    create topic "user-behavior"
+    ```
 
 ## Usage
 

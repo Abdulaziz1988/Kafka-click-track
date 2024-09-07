@@ -33,3 +33,6 @@ coverage/
 .vscode/
 .idea/
 *.swp
+
+#package-lock.json
+package-lock.json

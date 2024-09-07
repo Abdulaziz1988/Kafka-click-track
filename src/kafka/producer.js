@@ -2,7 +2,7 @@ const kafka = require('kafka-node');
 
 class KafkaProducer {
   constructor() {
-    const client = new kafka.KafkaClient({ kafkaHost: "0.0.0.0:9092" });
+    const client = new kafka.KafkaClient({ kafkaHost: process.env.KAFKA_BROKER_URL || '0.0.0.0:9092' });
     this.producer = new kafka.Producer(client);
 
     this.producer.on('ready', () => {
