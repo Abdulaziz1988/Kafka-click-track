@@ -22,7 +22,7 @@
 
 3. **Set up the environment variables**:
 
-    Create a [`.env`](command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2FUsers%2Fabdulaziz%2FDocuments%2Fcoding%2Fnodejs-kafka-website%2F.env%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22fa3c4a74-ce0c-4cfa-9239-6e3b55d58d86%22%5D "/Users/abdulaziz/Documents/coding/nodejs-kafka-website/.env") file in the root directory and add the following variables:
+    Create a [`.env`] file in the root directory and add the following variables:
 
     ```env
     KAFKA_BROKER_URL=0.0.0.0:9092
@@ -46,7 +46,7 @@
     npm start
     ```
 
-2. **Open your web browser and navigate to** [`http://localhost:3000`](command:_github.copilot.openSymbolFromReferences?%5B%22%22%2C%5B%7B%22uri%22%3A%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2FUsers%2Fabdulaziz%2FDocuments%2Fcoding%2Fnodejs-kafka-website%2FREADME.md%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22pos%22%3A%7B%22line%22%3A57%2C%22character%22%3A42%7D%7D%5D%2C%22fa3c4a74-ce0c-4cfa-9239-6e3b55d58d86%22%5D "Go to definition").
+2. **Open your web browser and navigate to** [`http://localhost:3000`]
 
 3. **Click on the website to trigger the event**.
 
@@ -65,7 +65,3 @@
     - `GET /points`
 - **Coordinates API**: Provides the coordinates data as JSON.
     - `GET /api/coordinates`
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
