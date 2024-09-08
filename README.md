@@ -37,9 +37,7 @@
 
    ```sh
    docker-compose up -d
-   ```
-
-   ```sh
+    # create the topic
    docker exec -it <kafka-container-id> kafka-topics.sh --create --topic user-behavior --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
    ```
 
