@@ -1,3 +1,7 @@
+## Overview
+
+This is a somple Kafka client that will track mouse click on a browser and plot the trigers to other web app in real time.
+
 ## Features
 
 - **Event Triggering**: Click events on the website are captured along with mouse coordinates.
