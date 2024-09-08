@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Simple Website</title>
-</head>
+  </head>
 
-<body>
-    <h1>Click Me!</h1>
-    <p>Clicking on the button will trigger an event.</p>
-    <button id="clickButton">Click</button>
+  <body style="background-color: rgb(195, 188, 202)">
+    <h1 style="text-align: center; color: white">
+      Click anywhere in this area
+    </h1>
+    <p style="text-align: center; color: white">
+      This website sends a request to the server when the user clicks on it,
+      don't forget to open the points page to see the points at
+      http://localhost:3000/points
+    </p>
     <script>
-        // Send a request to the server when the user clicks on the website
-        document.addEventListener('click', function (event) {
-            const coordinates = {
-                x: event.clientX,
-                y: event.clientY
-            };
+      // Send a request to the server when the user clicks on the website
+      document.addEventListener("click", function (event) {
+        const coordinates = {
+          x: event.clientX,
+          y: event.clientY,
+        };
 
-            fetch('/event', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ event: 'click', coordinates: coordinates })
-            })
-                .then(response => {
-                    if (response.ok) {
-                        console.log('Event sent successfully');
-                    } else {
-                        console.error('Failed to send event');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        });
+        fetch("/event", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ event: "click", coordinates: coordinates }),
+        })
+          .then((response) => {
+            if (response.ok) {
+              console.log("Event sent successfully");
+            } else {
+              console.error("Failed to send event");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
     </script>
-</body>
-
+  </body>
 </html>
