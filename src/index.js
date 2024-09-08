@@ -1,7 +1,9 @@
-const express = require('express');
-const KafkaProducer = require('./kafka/producer');
-const KafkaConsumer = require('./kafka/consumer');
-const routes = require('./routes');
+const express = require("express");
+const http = require("http");
+const WebSocket = require("ws");
+const KafkaProducer = require("./kafka/producer");
+const KafkaConsumer = require("./kafka/consumer");
+const routes = require("./routes");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -14,19 +16,36 @@ const kafkaConsumer = new KafkaConsumer();
 app.use(express.json());
 
 // Set up routes
-app.use('/', routes);
+app.use("/", routes);
 
-// Endpoint to serve the plot
-app.get('/points', (req, res) => {
-  res.sendFile('points.html', { root: 'src/public' });
+// Create HTTP server
+const server = http.createServer(app);
+
+// Set up WebSocket server
+const wss = new WebSocket.Server({ server });
+
+wss.on("connection", (ws) => {
+  console.log("Client connected");
 });
 
-// Endpoint to get coordinates data
-app.get('/api/coordinates', (req, res) => {
-  res.json(KafkaConsumer.coordinates);
+// Broadcast coordinates to all connected clients
+function broadcastCoordinates(coordinates) {
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(JSON.stringify(coordinates));
+    }
+  });
+}
+
+// Listen for new messages from Kafka and broadcast them
+kafkaConsumer.consumer.on("message", (message) => {
+  const event = JSON.parse(message.value);
+  if (event.coordinates) {
+    broadcastCoordinates(event.coordinates);
+  }
 });
 
 // Start the server
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
